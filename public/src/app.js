@@ -48,8 +48,8 @@ var MainBox = React.createClass({
           Placeholder Name
         </h2>
         <button name="Generate">Generate Group Name</button>
-        <AdjectiveBox />
-        <NounBox />
+        <AdjectiveBox data={this.state.adjectives} />
+        <NounBox data={this.state.nouns} />
       </div>
     );
   }
@@ -62,7 +62,7 @@ var AdjectiveBox = React.createClass({
       <div className="adjectiveBox">
         <h2>Adjectives</h2>
         <AdjectiveForm />
-        <AdjectiveList />
+        <AdjectiveList data={this.props.adjectives}/>
       </div>
     );
   }
@@ -85,7 +85,7 @@ var AdjectiveList = React.createClass({
   render: function() {
     return (
       <div className="adjectiveList">
-        This is an adjective list placeholder.
+        {this.props.adjectives}
       </div>
     );
   }
@@ -98,7 +98,7 @@ var NounBox = React.createClass({
       <div className="nounBox">
         <h2>Nouns</h2>
         <NounForm />
-        <NounList />
+        <NounList data={this.props.nouns}/>
       </div>
     );
   }
@@ -121,7 +121,7 @@ var NounList = React.createClass({
   render: function() {
     return (
       <div className="nounList">
-        This is a noun list placeholder.
+        {this.props.nouns}
       </div>
     );
   }
