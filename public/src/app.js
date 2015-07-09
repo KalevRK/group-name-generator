@@ -1,5 +1,45 @@
 // Main React component that contains all of the other components
 var MainBox = React.createClass({
+  loadAdjectivesFromServer: function() {
+    $.ajax({
+      url: 'adjectives.json',
+      dataType: 'json',
+      cache: false,
+      success: function(adjectives) {
+        this.setState({
+          adjectives: adjectives
+        });
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error('adjectives.json', status, err.toString());
+      }.bind(this)
+    });
+  },
+  loadNounsFromServer: function() {
+    $.ajax({
+      url: 'nouns.json',
+      dataType: 'json',
+      cache: false,
+      success: function(nouns) {
+        this.setState({
+          nouns: nouns
+        });
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error('nouns.json', status, err.toString());
+      }.bind(this)
+    });
+  },
+  getInitialState: function() {
+    return {
+      adjectives: [],
+      nouns: []
+    };
+  },
+  componentDidMount: function() {
+    this.loadAdjectivesFromServer();
+    this.loadNounsFromServer();
+  },
   render: function() {
     return (
       <div className="mainBox">

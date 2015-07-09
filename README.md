@@ -7,6 +7,7 @@ Tasks
 - [x] Create basic index.html and server.js files to be able to serve app
 - [x] Create JSON data files for adjectives and nouns and serve them
 - [x] Build out hierarchy of React components
+- [ ] Load adjectives and nouns from server
 - [ ] Implement AdjectiveList component 
 - [ ] Implement AdjectiveForm component
 - [ ] Implement AdjectiveBox component
