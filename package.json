@@ -1,0 +1,24 @@
+{
+  "name": "group-name-generator",
+  "version": "1.0.0",
+  "description": "Simple React app that generates random group names based on lists of adjectives and nouns.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KalevRK/group-name-generator.git"
+  },
+  "author": "Kalev Roomann-Kurrik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KalevRK/group-name-generator/issues"
+  },
+  "homepage": "https://github.com/KalevRK/group-name-generator",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1"
+  }
+}
