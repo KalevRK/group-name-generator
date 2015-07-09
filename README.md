@@ -4,8 +4,8 @@ Simple React app that generates random group names based on lists of adjectives 
 Tasks
 - [x] Setup file/directory structure
 - [x] Install dependencies
-- [ ] Create basic index.html and server.js files to be able to serve app
-- [ ] Create JSON data files for adjectives and nouns
+- [x] Create basic index.html and server.js files to be able to serve app
+- [ ] Create JSON data files for adjectives and nouns and serve them
 - [ ] Build out hierarchy of React components
 - [ ] Implement AdjectiveList component 
 - [ ] Implement AdjectiveForm component
