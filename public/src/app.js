@@ -118,9 +118,16 @@ var AdjectiveForm = React.createClass({
 // List of all stored adjectives
 var AdjectiveList = React.createClass({
   render: function() {
+    var adjectives = this.props.adjectives.map(function(adjective) {
+      return (
+        <div class="adjective">
+          {adjective}
+        </div>
+      );
+    });
     return (
       <div className="adjectiveList">
-        {this.props.adjectives}
+        {adjectives}
       </div>
     );
   }
