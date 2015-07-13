@@ -1,5 +1,5 @@
 // Main React component that contains all of the other components
-var MainBox = React.createClass({
+var MainBox = React.createClass({displayName: "MainBox",
   loadAdjectivesFromServer: function() {
     $.ajax({
       url: 'adjectives.json',
@@ -84,34 +84,34 @@ var MainBox = React.createClass({
   },
   render: function() {
     return (
-      <div className="mainBox">
-        <h1>Group Name Generator</h1>
-        <h2 className="groupName">
-          Placeholder Name
-        </h2>
-        <button name="Generate">Generate Group Name</button>
-        <AdjectiveBox adjectives={this.state.adjectives} addAdjective={this.addAdjective} />
-        <NounBox nouns={this.state.nouns} addNoun={this.addNoun} />
-      </div>
+      React.createElement("div", {className: "mainBox"}, 
+        React.createElement("h1", null, "Group Name Generator"), 
+        React.createElement("h2", {className: "groupName"}, 
+          "Placeholder Name"
+        ), 
+        React.createElement("button", {name: "Generate"}, "Generate Group Name"), 
+        React.createElement(AdjectiveBox, {adjectives: this.state.adjectives, addAdjective: this.addAdjective}), 
+        React.createElement(NounBox, {nouns: this.state.nouns, addNoun: this.addNoun})
+      )
     );
   }
 });
 
 // React component that contains all of the components associated with adjectives
-var AdjectiveBox = React.createClass({
+var AdjectiveBox = React.createClass({displayName: "AdjectiveBox",
   render: function() {
     return (
-      <div className="adjectiveBox">
-        <h2>Adjectives</h2>
-        <AdjectiveForm onSubmitAdjective={this.props.addAdjective} />
-        <AdjectiveList adjectives={this.props.adjectives} />
-      </div>
+      React.createElement("div", {className: "adjectiveBox"}, 
+        React.createElement("h2", null, "Adjectives"), 
+        React.createElement(AdjectiveForm, {onSubmitAdjective: this.props.addAdjective}), 
+        React.createElement(AdjectiveList, {adjectives: this.props.adjectives})
+      )
     );
   }
 });
 
 // Form for adding new adjectives to the list of adjectives
-var AdjectiveForm = React.createClass({
+var AdjectiveForm = React.createClass({displayName: "AdjectiveForm",
   submitAdjective: function(e) {
     e.preventDefault();
     // Retrieve the adjective from the input form element
@@ -128,47 +128,47 @@ var AdjectiveForm = React.createClass({
   },
   render: function() {
     return (
-      <form className="adjectiveForm" onSubmit={this.submitAdjective}>
-        <input type="text" placeholder="Enter a new adjective" ref="adjective" />
-        <input type="submit" value="Add" />
-      </form>
+      React.createElement("form", {className: "adjectiveForm", onSubmit: this.submitAdjective}, 
+        React.createElement("input", {type: "text", placeholder: "Enter a new adjective", ref: "adjective"}), 
+        React.createElement("input", {type: "submit", value: "Add"})
+      )
     );
   }
 });
 
 // List of all stored adjectives
-var AdjectiveList = React.createClass({
+var AdjectiveList = React.createClass({displayName: "AdjectiveList",
   render: function() {
     var adjectives = this.props.adjectives.map(function(adjective) {
       return (
-        <div class="adjective">
-          {adjective}
-        </div>
+        React.createElement("div", {class: "adjective"}, 
+          adjective
+        )
       );
     });
     return (
-      <div className="adjectiveList">
-        {adjectives}
-      </div>
+      React.createElement("div", {className: "adjectiveList"}, 
+        adjectives
+      )
     );
   }
 });
 
 // React component that contains all of the components associated with nouns
-var NounBox = React.createClass({
+var NounBox = React.createClass({displayName: "NounBox",
   render: function() {
     return (
-      <div className="nounBox">
-        <h2>Nouns</h2>
-        <NounForm onSubmitNoun={this.props.addNoun} />
-        <NounList nouns={this.props.nouns} />
-      </div>
+      React.createElement("div", {className: "nounBox"}, 
+        React.createElement("h2", null, "Nouns"), 
+        React.createElement(NounForm, {onSubmitNoun: this.props.addNoun}), 
+        React.createElement(NounList, {data: this.props.nouns})
+      )
     );
   }
 });
 
 // Form for adding new nouns to the list of nouns
-var NounForm = React.createClass({
+var NounForm = React.createClass({displayName: "NounForm",
   submitNoun: function(e) {
     e.preventDefault();
     // Retrieve the noun from the input form element
@@ -185,30 +185,30 @@ var NounForm = React.createClass({
   },
   render: function() {
     return (
-      <form className="nounForm" onSubmit={this.submitNoun}>
-        <input type="text" placeholder="Enter a new noun" ref="noun" />
-        <input type="submit" value="Add" />
-      </form>
+      React.createElement("form", {className: "nounForm", onSubmit: this.submitNoun}, 
+        React.createElement("input", {type: "text", placeholder: "Enter a new noun", ref: "noun"}), 
+        React.createElement("input", {type: "submit", value: "Add"})
+      )
     );
   }
 });
 
 // List of all stored nouns
-var NounList = React.createClass({
+var NounList = React.createClass({displayName: "NounList",
   render: function() {
     var nouns = this.props.nouns.map(function(noun) {
       return (
-        <div class="noun">
-          {noun}
-        </div>
+        React.createElement("div", {class: "noun"}, 
+          noun
+        )
       );
     });
     return (
-      <div className="nounList">
-        {nouns}
-      </div>
+      React.createElement("div", {className: "nounList"}, 
+        nouns
+      )
     );
   }
 });
 
-React.render(<MainBox />, document.getElementById('app'));
+React.render(React.createElement(MainBox, null), document.getElementById('app'));
