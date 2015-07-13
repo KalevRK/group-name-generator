@@ -30,6 +30,27 @@ var MainBox = React.createClass({
       }.bind(this)
     });
   },
+  addAdjective: function(adjective) {
+    // Current adjectives
+    var adjectives = this.state.adjectives;
+    // Add the new adjective to the array of current adjectives
+    var newAdjective = adjectives.concat([adjective]);
+    // Update the state of the component
+    this.setState({adjectives: adjectives});
+    // Update the data on the server
+    $.ajax({
+      url: 'adjectives.json',
+      dataType: 'json',
+      type: 'POST',
+      data: adjective,
+      success: function(adjectives) {
+        this.setState({adjectives: adjectives});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
   getInitialState: function() {
     return {
       adjectives: [],
@@ -48,8 +69,8 @@ var MainBox = React.createClass({
           Placeholder Name
         </h2>
         <button name="Generate">Generate Group Name</button>
-        <AdjectiveBox data={this.state.adjectives} />
-        <NounBox data={this.state.nouns} />
+        <AdjectiveBox adjectives={this.state.adjectives} addAdjective={this.addAdjective}/>
+        <NounBox nouns={this.state.nouns} />
       </div>
     );
   }
@@ -61,8 +82,8 @@ var AdjectiveBox = React.createClass({
     return (
       <div className="adjectiveBox">
         <h2>Adjectives</h2>
-        <AdjectiveForm />
-        <AdjectiveList data={this.props.adjectives}/>
+        <AdjectiveForm onSubmitAdjective={this.props.addAdjective}/>
+        <AdjectiveList adjectives={this.props.adjectives}/>
       </div>
     );
   }
@@ -70,9 +91,23 @@ var AdjectiveBox = React.createClass({
 
 // Form for adding new adjectives to the list of adjectives
 var AdjectiveForm = React.createClass({
+  submitAdjective: function(e) {
+    e.preventDefault();
+    // Retrieve the adjective from the input form element
+    var adjective = React.findDOMNode(this.refs.adjective).value.trim();
+    // If no adjective was entered then return
+    if (!adjective) {
+      return;
+    }
+    // Invoke the function in the parent component
+    // Pass in the adjective to add
+    this.props.onSubmitAdjective({adjective: adjective});
+    // Clear the input form element's value
+    React.findDOMNode(this.refs.adjective).value = '';
+  },
   render: function() {
     return (
-      <form className="adjectiveForm">
+      <form className="adjectiveForm" onSubmit={this.submitAdjective}>
         <input type="text" placeholder="Enter a new adjective" ref="adjective" />
         <input type="submit" value="Add" />
       </form>
