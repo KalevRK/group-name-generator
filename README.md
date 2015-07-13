@@ -11,8 +11,8 @@ Tasks
 - [x] Implement AdjectiveList component 
 - [x] Implement NounList component 
 - [x] Implement AdjectiveForm component
-- [ ] Implement NounForm component
-- [ ] Implement AdjectiveBox component
-- [ ] Implement NounBox component
+- [x] Implement NounForm component
+- [x] Implement AdjectiveBox component
+- [x] Implement NounBox component
 - [ ] Generate a random Adjective/Noun combination when user clicks submit button
 - [ ] Add CSS styling
