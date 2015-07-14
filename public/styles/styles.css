@@ -1,0 +1,41 @@
+body {
+  font-family: 'Lato', sans-serif;
+  background-image: url('img/lightpaperfibers.png');
+}
+
+h2 {
+  font-family: 'Oxygen', sans-serif;
+  min-height: 30px;
+}
+
+div#app {
+  background-size: contain;
+  max-width: 700px;
+  text-align: center;
+  margin: auto;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+}
+
+div.adjectiveBox {
+  float: left;
+  width: 50%;
+  font-weight: 400;
+}
+
+div.adjectiveList {
+  margin: 1em auto;
+}
+
+div.nounBox {
+  float: right;
+  width: 50%;
+  font-weight: 400;
+}
+
+div.nounList {
+  margin: 1em auto;
+}
