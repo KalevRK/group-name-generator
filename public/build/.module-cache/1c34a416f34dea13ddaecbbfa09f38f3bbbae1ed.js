@@ -76,9 +76,11 @@ var MainBox = React.createClass({displayName: "MainBox",
     // retrieve a random adjective from the list of adjectives
     var adjectiveIndex = Math.floor(Math.random() * this.state.adjectives.length);
     var adjective = this.state.adjectives[adjectiveIndex].adjective;
+    console.log(adjective);
     // retrieve a random noun from the list of nouns
     var nounIndex = Math.floor(Math.random() * this.state.nouns.length);
     var noun = this.state.nouns[nounIndex].noun;
+    console.log(noun);
     // concatenate adjective with noun and set as value for h2 groupName element
     this.setState({groupName: adjective + ' ' + noun});
   },

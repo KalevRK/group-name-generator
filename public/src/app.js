@@ -72,10 +72,21 @@ var MainBox = React.createClass({
       }.bind(this)
     });
   },
+  generateName: function() {
+    // retrieve a random adjective from the list of adjectives
+    var adjectiveIndex = Math.floor(Math.random() * this.state.adjectives.length);
+    var adjective = this.state.adjectives[adjectiveIndex].adjective;
+    // retrieve a random noun from the list of nouns
+    var nounIndex = Math.floor(Math.random() * this.state.nouns.length);
+    var noun = this.state.nouns[nounIndex].noun;
+    // concatenate adjective with noun and set as value for h2 groupName element
+    this.setState({groupName: adjective + ' ' + noun});
+  },
   getInitialState: function() {
     return {
       adjectives: [],
-      nouns: []
+      nouns: [],
+      groupName: ''
     };
   },
   componentDidMount: function() {
@@ -87,9 +98,9 @@ var MainBox = React.createClass({
       <div className="mainBox">
         <h1>Group Name Generator</h1>
         <h2 className="groupName">
-          Placeholder Name
+          {this.state.groupName}
         </h2>
-        <button name="Generate">Generate Group Name</button>
+        <button name="Generate" onClick={this.generateName}>Generate Group Name</button>
         <AdjectiveBox adjectives={this.state.adjectives} addAdjective={this.addAdjective} />
         <NounBox nouns={this.state.nouns} addNoun={this.addNoun} />
       </div>
