@@ -6,9 +6,8 @@ var MainBox = React.createClass({
       dataType: 'json',
       cache: false,
       success: function(adjectives) {
-        this.setState({
-          adjectives: adjectives
-        });
+        this.setState({adjectives: adjectives});
+        console.log('adjectives:', this.state.adjectives);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error('adjectives.json', status, err.toString());
@@ -21,9 +20,8 @@ var MainBox = React.createClass({
       dataType: 'json',
       cache: false,
       success: function(nouns) {
-        this.setState({
-          nouns: nouns
-        });
+        this.setState({nouns: nouns});
+        console.log('nouns:', this.state.nouns);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error('nouns.json', status, err.toString());
@@ -36,7 +34,7 @@ var MainBox = React.createClass({
     // Add the new adjective to the array of current adjectives
     var newAdjective = adjectives.concat([adjective]);
     // Update the state of the component
-    this.setState({adjectives: adjectives});
+    this.setState({adjectives: newAdjective});
     // Update the data on the server
     $.ajax({
       url: 'adjectives.json',
@@ -55,9 +53,9 @@ var MainBox = React.createClass({
     // Current nouns
     var nouns = this.state.nouns;
     // Add the new noun to the array of current nouns
-    var newnoun = nouns.concat([noun]);
+    var newNoun = nouns.concat([noun]);
     // Update the state of the component
-    this.setState({nouns: nouns});
+    this.setState({nouns: newNoun});
     // Update the data on the server
     $.ajax({
       url: 'nouns.json',
@@ -73,14 +71,17 @@ var MainBox = React.createClass({
     });
   },
   generateName: function() {
-    // retrieve a random adjective from the list of adjectives
-    var adjectiveIndex = Math.floor(Math.random() * this.state.adjectives.length);
-    var adjective = this.state.adjectives[adjectiveIndex].adjective;
-    // retrieve a random noun from the list of nouns
-    var nounIndex = Math.floor(Math.random() * this.state.nouns.length);
-    var noun = this.state.nouns[nounIndex].noun;
-    // concatenate adjective with noun and set as value for h2 groupName element
-    this.setState({groupName: adjective + ' ' + noun});
+    // check to make sure that both the adjective list and noun list have words
+    if (this.state.adjectives.length > 0 && this.state.nouns.length > 0) {
+      // retrieve a random adjective from the list of adjectives
+      var adjectiveIndex = Math.floor(Math.random() * this.state.adjectives.length);
+      var adjective = this.state.adjectives[adjectiveIndex];
+      // retrieve a random noun from the list of nouns
+      var nounIndex = Math.floor(Math.random() * this.state.nouns.length);
+      var noun = this.state.nouns[nounIndex];
+      // concatenate adjective with noun and set as value for h2 groupName element
+      this.setState({groupName: adjective + ' ' + noun});
+    }
   },
   getInitialState: function() {
     return {

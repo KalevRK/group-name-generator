@@ -20,7 +20,7 @@ app.get('/adjectives.json', function(req, res) {
 app.post('/adjectives.json', function(req, res) {
   fs.readFile('adjectives.json', function(err, data) {
     var adjectives = JSON.parse(data);
-    adjectives.push(req.body);
+    adjectives.push(req.body.adjective);
     fs.writeFile('adjectives.json', JSON.stringify(adjectives, null, 2), function(err) {
       res.setHeader('Cache-Control', 'no-cache');
       res.json(adjectives);
@@ -38,7 +38,7 @@ app.get('/nouns.json', function(req, res) {
 app.post('/nouns.json', function(req, res) {
   fs.readFile('nouns.json', function(err, data) {
     var nouns = JSON.parse(data);
-    nouns.push(req.body);
+    nouns.push(req.body.noun);
     fs.writeFile('nouns.json', JSON.stringify(nouns, null, 2), function(err) {
       res.setHeader('Cache-Control', 'no-cache');
       res.json(nouns);

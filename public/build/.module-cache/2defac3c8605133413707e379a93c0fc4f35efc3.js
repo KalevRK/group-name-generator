@@ -71,17 +71,14 @@ var MainBox = React.createClass({displayName: "MainBox",
     });
   },
   generateName: function() {
-    // check to make sure that both the adjective list and noun list have words
-    if (this.state.adjectives.length > 0 && this.state.nouns.length > 0) {
-      // retrieve a random adjective from the list of adjectives
-      var adjectiveIndex = Math.floor(Math.random() * this.state.adjectives.length);
-      var adjective = this.state.adjectives[adjectiveIndex];
-      // retrieve a random noun from the list of nouns
-      var nounIndex = Math.floor(Math.random() * this.state.nouns.length);
-      var noun = this.state.nouns[nounIndex];
-      // concatenate adjective with noun and set as value for h2 groupName element
-      this.setState({groupName: adjective + ' ' + noun});
-    }
+    // retrieve a random adjective from the list of adjectives
+    var adjectiveIndex = Math.floor(Math.random() * this.state.adjectives.length);
+    var adjective = this.state.adjectives[adjectiveIndex];
+    // retrieve a random noun from the list of nouns
+    var nounIndex = Math.floor(Math.random() * this.state.nouns.length);
+    var noun = this.state.nouns[nounIndex];
+    // concatenate adjective with noun and set as value for h2 groupName element
+    this.setState({groupName: adjective + ' ' + noun});
   },
   getInitialState: function() {
     return {
